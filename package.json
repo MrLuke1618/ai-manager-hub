@@ -1,0 +1,28 @@
+{
+  "name": "ai-manager-hub",
+  "version": "1.0.0",
+  "description": "Central manager that orchestrates all AI video creation assistants (planning, production, publishing, postpublishing).",
+  "main": "src/manager.ts",
+  "scripts": {
+    "start": "npx ts-node src/manager.ts",
+    "build": "tsc",
+    "run": "npm run start"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.1"
+  },
+  "keywords": [
+    "AI",
+    "manager",
+    "pipeline",
+    "video",
+    "automation"
+  ],
+  "author": "Minh Hoang",
+  "license": "MIT"
+}

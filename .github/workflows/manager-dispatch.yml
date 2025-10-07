@@ -1,0 +1,33 @@
+name: Run AI Manager Pipeline
+
+on:
+  workflow_dispatch:    # Manual trigger
+  push:                 # Auto-trigger when code updates
+    branches:
+      - main
+
+jobs:
+  run_manager:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run AI Manager
+        env:
+          AI_MANAGER_TOKEN: ${{ secrets.AI_MANAGER_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PLANNING_ASSISTANT_ENDPOINT: ${{ secrets.PLANNING_ASSISTANT_ENDPOINT }}
+          PRODUCTION_ASSISTANT_ENDPOINT: ${{ secrets.PRODUCTION_ASSISTANT_ENDPOINT }}
+          PUBLISHING_ASSISTANT_ENDPOINT: ${{ secrets.PUBLISHING_ASSISTANT_ENDPOINT }}
+          POSTPUBLISHING_ASSISTANT_ENDPOINT: ${{ secrets.POSTPUBLISHING_ASSISTANT_ENDPOINT }}
+        run: npx ts-node src/manager.ts
